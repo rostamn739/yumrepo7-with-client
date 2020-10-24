@@ -1,0 +1,19 @@
+services:
+  yumrepo7:
+    container_name: yumrepo7
+    build:
+      context: ./yumrepo7/
+      dockerfile: ./Dockerfile
+    image: nasibullin-yumrepo7:latest
+    expose:
+      - "80"
+  yumrepo7-client:
+    container_name: yumrepo7-client
+    build:
+      context: ./yumrepo7-client/
+      dockerfile: ./Dockerfile
+    image: nasibullin-yumrepo7-client:latest
+    stdin_open: true
+    tty: true
+    links:
+      - "yumrepo7:yumrepo7"
